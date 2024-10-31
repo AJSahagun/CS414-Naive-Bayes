@@ -5,6 +5,7 @@ from sklearn.naive_bayes import GaussianNB
 from sklearn.metrics import accuracy_score, classification_report
 from sklearn.preprocessing import LabelEncoder
 from sklearn.impute import SimpleImputer
+from imblearn.over_sampling import SMOTE
 
 PROJECT_ROOT = path.abspath(path.dirname(path.dirname(__file__)))
 DATA_DIR = path.join(PROJECT_ROOT, "Dataset")
@@ -15,13 +16,10 @@ df = pd.read_csv(DATA_FILE, low_memory=False)
 
 # Clean column names
 df.columns = df.columns.str.strip()
-
 # Define selected features and target label
-selected_features = ['Flow Duration', 'Total Fwd Packets', 'Flow Bytes/s', 'Flow Packets/s', 'Avg Fwd Segment Size', 'Subflow Fwd Packets', 'Init_Win_bytes_forward']
 target_label = 'Label'
-
 # Prepare data for classification
-X_class = df[selected_features]
+X_class = df.drop(columns=[target_label]) 
 y_class = df[target_label]
 
 # Encode categorical features first
@@ -38,11 +36,15 @@ y_class_encoded = label_encoder.fit_transform(y_class)
 # Split the data into training and testing sets (80/20 split)
 X_train, X_test, y_train, y_test = train_test_split(X_class_imputed, y_class_encoded, test_size=0.2, stratify=y_class_encoded)
 
+# Handle class imbalance with SMOTE
+smote = SMOTE()
+X_train_balanced, y_train_balanced = smote.fit_resample(X_train, y_train)
+
 # Initialize the Gaussian Naive Bayes classifier
 gnb = GaussianNB()
 
 # Train the model
-gnb.fit(X_train, y_train)
+gnb.fit(X_train_balanced, y_train_balanced)
 
 # Make predictions
 y_pred = gnb.predict(X_test)
