@@ -9,7 +9,7 @@ from imblearn.over_sampling import SMOTE
 
 PROJECT_ROOT = path.abspath(path.dirname(path.dirname(__file__)))
 DATA_DIR = path.join(PROJECT_ROOT, "Dataset")
-DATA_FILE = path.join(DATA_DIR, "sampled_400.csv")
+DATA_FILE = path.join(DATA_DIR, "sampled_450.csv")
 
 # Load the dataset
 df = pd.read_csv(DATA_FILE, low_memory=False)
@@ -34,7 +34,7 @@ label_encoder = LabelEncoder()
 y_class_encoded = label_encoder.fit_transform(y_class)
 
 # Split the data into training and testing sets (80/20 split)
-X_train, X_test, y_train, y_test = train_test_split(X_class_imputed, y_class_encoded, test_size=0.2, stratify=y_class_encoded)
+X_train, X_test, y_train, y_test = train_test_split(X_class_imputed, y_class_encoded, test_size=0.2, random_state=90, stratify=y_class_encoded)
 
 # Handle class imbalance with SMOTE
 smote = SMOTE()
