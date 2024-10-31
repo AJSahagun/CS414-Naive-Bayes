@@ -33,6 +33,7 @@ Imputation: Handles missing values using the mean strategy for numeric columns.
 4. Train-Test Split: Splits the data into training and testing sets with an 80/20 split.
 5. Class Imbalance Handling: Applies SMOTE (Synthetic Minority Over-sampling Technique) to balance the classes in the training data, ensuring the model is trained on a balanced dataset.
 6. Model Training: Initializes and trains a Gaussian Naive Bayes classifier on the balanced training data.
+   
 7.Model Evaluation:
 -Predicts the labels for the test set.
 -Prints the accuracy score and classification report (precision, recall, F1-score for each class).
