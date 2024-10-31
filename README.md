@@ -19,7 +19,7 @@ To run the code, you will need the following Python libraries:
 - scikit-learn
 - imbalanced-learn
   
-#Install the necessary libraries by running:
+# Install the necessary libraries by running:
 
 "pip install pandas numpy scikit-learn imbalanced-learn"
 
@@ -38,14 +38,14 @@ Imputation: Handles missing values using the mean strategy for numeric columns.
 -Prints the accuracy score and classification report (precision, recall, F1-score for each class).
 
 
-#Running the Code
+# Running the Code
 To run the script, navigate to the Naive_Bayes folder and execute the Python script:
 #"python naive_bayes_script.py"
 
-#Results
+# Results
 The results include:
 Accuracy Score: Provides the overall accuracy of the model on the test set.
 Classification Report: Displays precision, recall, and F1-score for each class, helping to understand the model's performance on different types of malware and benign cases.
 
-#License
+# License
 This project is licensed under the MIT License.
